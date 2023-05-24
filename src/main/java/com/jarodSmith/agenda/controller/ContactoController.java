@@ -4,6 +4,8 @@ import com.jarodSmith.agenda.model.Contacto;
 import com.jarodSmith.agenda.repo.ContactoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,6 +20,7 @@ public class ContactoController {
 
     @GetMapping("")
     ModelAndView index(){
+
         List<Contacto> contactos = contactoRepository.findAll();
         return new ModelAndView("index")
                 .addObject("contactos", contactos);
@@ -25,15 +28,22 @@ public class ContactoController {
 
     @GetMapping("/nuevo")
     ModelAndView nuevo(){
+
         return new ModelAndView("nuevo")
                 .addObject("contacto", new Contacto());
     }
 
     @PostMapping("/nuevo")
-    String crear(Contacto contacto, RedirectAttributes ra){
+    ModelAndView crear(@Validated Contacto contacto, BindingResult bindingResult, RedirectAttributes ra){
+
+        if(bindingResult.hasErrors()){
+            return new ModelAndView("nuevo")
+                    .addObject("contacto", contacto);
+        }
         contactoRepository.save(contacto);
         ra.addFlashAttribute("msgExito", "¡El Contacto ha sido registrado correctamente!");
-        return "redirect:/";
+
+        return new ModelAndView("redirect:/");
     }
 
 }
