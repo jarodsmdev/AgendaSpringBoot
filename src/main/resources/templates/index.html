@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+</head>
+<body>
+    <h1>Mi lista de Contactos</h1>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <th>FECHA NACIMIENTO</th>
+                <th>CELULAR</th>
+                <th>EMAIL</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="contacto: ${contactos}" th:object="${contacto}">
+                <td th:text="*{id}"></td>
+                <td th:text="*{nombre}"></td>
+                <td th:text="*{#temporals.format(fechaNacimiento, 'dd/MM/YYYY')}"></td>
+                <td th:text="*{celular}"></td>
+                <td th:text="*{email}"></td>
+            </tr>
+        </tbody>
+
+    </table>
+</body>
+</html>
