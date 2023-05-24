@@ -21,6 +21,7 @@
                 <th>FECHA NACIMIENTO</th>
                 <th>CELULAR</th>
                 <th>EMAIL</th>
+                <th></th>
             </tr>
         </thead>
 
@@ -31,6 +32,9 @@
                 <td th:text="*{#temporals.format(fechaNacimiento, 'dd/MM/YYYY')}"></td>
                 <td th:text="*{celular}"></td>
                 <td th:text="*{email}"></td>
+                <td>
+                    <a th:href="@{/{id}/editar(id=*{id})}">Editar</a>
+                </td>
             </tr>
         </tbody>
 
