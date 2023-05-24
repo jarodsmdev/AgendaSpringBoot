@@ -7,6 +7,11 @@
 <body>
     <h1>Mi lista de Contactos</h1>
 
+    <a href="/nuevo">Nuevo</a>
+
+    <div th:if="${msgExito ne null}">
+        [[${msgExito}]]
+    </div>
 
     <table>
         <thead>

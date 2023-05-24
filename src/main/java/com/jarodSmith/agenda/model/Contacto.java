@@ -1,6 +1,7 @@
 package com.jarodSmith.agenda.model;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,6 +15,8 @@ public class Contacto {
     private Integer id;
 
     private String nombre;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "fechanac")
     private LocalDate fechaNacimiento;
 

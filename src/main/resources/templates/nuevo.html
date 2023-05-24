@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Contacto</title>
+</head>
+<body>
+  <h1>Nuevo Contacto</h1>
+
+  <form th:action="@{''}" th:object="${contacto}" method="POST">
+    <div>
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" placeholder="Nombre" th:field="*{nombre}">
+    </div>
+
+    <div>
+      <label for="fechaNacimiento">Celular</label>
+      <input type="date" id="fechaNacimiento" placeholder="fecha Nacimiento" th:field="*{fechaNacimiento}">
+    </div>
+
+    <div>
+      <label for="celular">Celular</label>
+      <input type="tel" id="celular" placeholder="Celular" th:field="*{celular}">
+    </div>
+
+    <div>
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Email" th:field="*{email}">
+    </div>
+
+    <button>Guardar</button>
+  </form>
+</body>
+</html>
